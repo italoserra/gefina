@@ -7,13 +7,12 @@ interface Customer {
 }
 
 interface Invoice {
-  
-    id: number;
-    amount: number;
-    status: InvoiceStatus;
-    issueDate: string;
-    dueDate: string;
-    customer: Customer;
+  id: number;
+  amount: number;
+  status: InvoiceStatus;
+  issueDate: string;
+  dueDate: string;
+  customer: Customer;
 }
 const invoices: Invoice[] = [
   {

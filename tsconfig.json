@@ -1,12 +1,12 @@
 {
-    "compilerOptions": {
-        "target": "esnext", // compila para o js mais recente
-        "module": "nodenext", // tipo de exportação que estamos usando também é a mais recente (import e export)
-        "moduleResolution": "nodenext",
-        "strict": true,
-        "erasableSyntaxOnly": true,
-        "allowImportingTsExtensions": true,
-        "noEmit": true,
-        "types": ["node"]
-    }
+  "compilerOptions": {
+    "target": "esnext", // compila para o js mais recente
+    "module": "nodenext", // tipo de exportação que estamos usando também é a mais recente (import e export)
+    "moduleResolution": "nodenext",
+    "strict": true,
+    "erasableSyntaxOnly": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "types": ["node"]
+  }
 }
