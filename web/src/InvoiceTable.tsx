@@ -1,4 +1,4 @@
-import InvoiceRow from './invoiceRow.tsx';
+import InvoiceRow from './InvoiceRow.tsx';
 import { Invoice } from './invoiceType.ts';
 
 interface InvoiceTableProps {
