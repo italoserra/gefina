@@ -1,7 +1,7 @@
-import pool from "./database.ts";
+import pool from './database.ts';
 
 type InvoiceStatus = 'paid' | 'pending';
-type InvoiceSituation = 'paid' | 'penging' | 'overdue';
+type InvoiceSituation = 'paid' | 'pending' | 'overdue';
 
 interface Customer {
   id: number;
@@ -48,7 +48,7 @@ function toInvoice(row: InvoiceRow): Invoice {
 }
 
 const baseQuery = `
-SELECT
+  SELECT
     invoices.id,
     invoices.amount,
     invoices.status,
@@ -72,15 +72,16 @@ export async function findAllInvoices(): Promise<Invoice[]> {
 
   const invoices: Invoice[] = [];
 
-  connect.rows.forEach(invoice => invoices.push(toInvoice(invoice)))
-  
+  connect.rows.forEach(invoice => invoices.push(toInvoice(invoice)));
+
   return invoices;
 }
 
-export async function findInvoicesById(id: number): Promise<Invoice | undefined> {
+export async function findInvoiceById(id: number): Promise<Invoice | undefined> {
   const connect = await pool.query<InvoiceRow>(`${baseQuery} WHERE invoices.id = $1;`, [id]);
-  
+
   if (!connect.rows.length) return undefined;
 
   return toInvoice(connect.rows[0]);
 }
+ 

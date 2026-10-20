@@ -2,15 +2,15 @@ import { Router } from 'express';
 
 import {
   findAllInvoices,
-  findInvoicesById
-  } from './invoice.service.ts';
+  findInvoiceById
+} from './invoice.service.ts';
 
 const router = Router();
 
 router.get('/', async (_request, response) => {
   try {
     const invoices = await findAllInvoices();
-    
+  
     response.status(200).json(invoices);
   } catch (error) {
     console.error(error);
@@ -19,14 +19,14 @@ router.get('/', async (_request, response) => {
       status: 500,
       message: 'Não foi possível carregar as faturas.'
     }})
- }
- });
+  }
+});
 
 router.get('/:id', async (request, response) => {
   try {
     const id = Number(request.params.id);
   
-  const invoice = await findInvoicesById(id);
+    const invoice = await findInvoiceById(id);
   
     if (!invoice) response.status(404).json({ error: {
       status: 404,
@@ -41,7 +41,7 @@ router.get('/:id', async (request, response) => {
       status: 500,
       message: 'Não foi possível carregar as faturas.'
     }});
-  }  
+  }
 });
 
 export default router;

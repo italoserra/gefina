@@ -1,9 +1,9 @@
 import express from 'express';
 import path from 'node:path';
-import pool from './database.ts';
 
 import invoices from './invoice.route.ts';
-import { Server } from 'node:http';
+
+import pool from './database.ts';
 
 const app = express();
 const dist = path.join(import.meta.dirname, '..', 'web', 'dist');
@@ -14,7 +14,7 @@ app.use((request, _response, next) => {
 });
 
 app.get('/api/health', async (_request, response) => {
-    try {
+  try {
     const connect = await pool.query('SELECT datname FROM pg_database WHERE oid = 5;');
   
     response.status(200).json({
@@ -24,8 +24,8 @@ app.get('/api/health', async (_request, response) => {
   } catch (error) {
     console.error(error);
 
-    response.status(500).json ({
-      server: 'Server is reunning.',
+    response.status(500).json({
+      server: 'Server is running.',
       database: 'unavaliable'
     })
   }
@@ -40,4 +40,4 @@ app.use((_request, response) => {
   response.status(404).json({ message: 'Recurso não encontrado.' });
 });
 
-app.listen(3000);
+app.listen(Number(process.env.PORT) || 3000);

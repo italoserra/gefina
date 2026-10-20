@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "esnext", // compila para o js mais recente
-    "module": "nodenext", // tipo de exportação que estamos usando também é a mais recente (import e export)
+    "target": "esnext",
+    "module": "nodenext",
     "moduleResolution": "nodenext",
     "strict": true,
     "erasableSyntaxOnly": true,
