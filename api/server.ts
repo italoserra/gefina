@@ -1,10 +1,11 @@
 import express from 'express';
-import path from 'node:path';
+import path, { join } from 'node:path';
 
 import dashboard from './dashboard.route.ts';
 import invoices from './invoice.route.ts';
 
 import pool from './database.ts';
+import { request } from 'node:http';
 
 const app = express();
 const dist = path.join(import.meta.dirname, '..', 'web', 'dist');
@@ -37,6 +38,15 @@ app.use('/api/dashboard', dashboard);
 app.use('/api/invoices', invoices);
 
 app.use(express.static(dist));
+
+app.use((request, response, next) => {
+  if (request.url.startsWith('/api') || request.method !== 'GET') {
+    next();
+    return;
+  }
+
+  response.sendFile(join(dist, 'index.html'));
+});
 
 app.use((_request, response) => {
   response.status(404).json({ message: 'Recurso não encontrado.' });
