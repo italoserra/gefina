@@ -8,15 +8,27 @@ import {
 import DashboardPage from "./DashboardPage";
 import InvoicePage from "./InvoicePage";
 
-export default function App(){
+export default function App() {
     return <BrowserRouter>
-        <nav>
-            <Link to='/'>Painel Inicial</Link>
-            <Link to='/faturas'>Faturas</Link>
-        </nav>
-        <Routes>
-            <Route path='/' element={<DashboardPage/>} />
-            <Route path='/faturas' element={<InvoicePage/>} />
-        </Routes>
+        <aside>
+            <header>Gefina</header>
+
+            <nav>
+                <ul>
+                    <li>
+                        <Link to='/'>Painel Inicial</Link>
+                    </li>
+                    <li>
+                        <Link to='/faturas'>Faturas</Link>
+                    </li>
+                </ul>             
+            </nav>
+        </aside>
+        <main>
+            <Routes>
+                <Route path='/' element={<DashboardPage />} />
+                <Route path='/faturas' element={<InvoicePage />} />
+            </Routes>
+        </main>
     </BrowserRouter>
 }
