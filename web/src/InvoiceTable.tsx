@@ -13,19 +13,18 @@ export default function InvoiceTable(props: InvoiceTableProps) {
             <tr>
                 <th>Cliente</th>
                 <th>Valor</th>
-                <th>Data de Emissão</th>
-                <th>Data de Vencimento</th>
+                <th className='numeric-date'>Data de Emissão</th>
+                <th className='numeric-date'>Data de Vencimento</th>
                 <th>Situação</th>
             </tr>
         </thead>
         <tbody>
             {invoices.map(invoice => (
                 <InvoiceRow
-                key={invoice.id}
-                invoice={invoice}
+                    key={invoice.id}
+                    invoice={invoice}
                 />
             ))}
         </tbody>
-
     </table>
-}
+} 

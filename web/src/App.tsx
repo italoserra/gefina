@@ -2,33 +2,35 @@ import {
     BrowserRouter,
     Routes,
     Route,
-    Link
+    NavLink
 } from 'react-router';
-
-import DashboardPage from "./DashboardPage";
-import InvoicePage from "./InvoicePage";
+import logo from './assets/Logo.png';
+import DashboardPage from './DashboardPage.tsx';
+import InvoicePage from './InvoicePage.tsx';
 
 export default function App() {
     return <BrowserRouter>
-        <aside>
-            <header>Gefina</header>
+        <aside className='sidebar'>
+            <header className='brand'>
+                <img src={logo} alt="Gefina" />
+                </header>
 
-            <nav>
+            <nav className='menu'>
                 <ul>
                     <li>
-                        <Link to='/'>Painel Inicial</Link>
+                        <NavLink to='/'>Painiel Inicial</NavLink>
                     </li>
                     <li>
-                        <Link to='/faturas'>Faturas</Link>
+                        <NavLink to='/faturas'>Faturas</NavLink>
                     </li>
-                </ul>             
+                </ul>
             </nav>
         </aside>
-        <main>
+        <main className='content'>
             <Routes>
-                <Route path='/' element={<DashboardPage />} />
-                <Route path='/faturas' element={<InvoicePage />} />
+                <Route path='/' element={<DashboardPage/>} />
+                <Route path='/faturas' element={<InvoicePage/>} />
             </Routes>
         </main>
     </BrowserRouter>
-}
+    }
