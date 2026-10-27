@@ -4,7 +4,9 @@ import dashboard from './dashboard.route.ts'
 import invoices from './invoice.route.ts';
 import pool from './database.ts';
 import handleError from './error.middleware.ts';
+
 const app = express();
+
 app.use(express.json());
 
 const dist = path.join(import.meta.dirname, '..', 'web', 'dist');
@@ -40,12 +42,13 @@ app.use((request) => {
   if (!request.url.startsWith('/api')) express.static(dist)
 })
 
-app.use((request,response, next)=>{
-if(request.url.startsWith('/api')|| request.method !=='GET'){
+app.use((request,response, next) => {
+if(request.url.startsWith('/api')|| request.method !=='GET') {
   next();
   return;
 }
-response.sendFile(join(dist,'index.html'));
+
+response.sendFile(path.join(dist,'index.html'));
 })
 
 app.use((_request, response) => {
